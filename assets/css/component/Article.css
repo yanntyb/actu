@@ -1,0 +1,43 @@
+@import "Article-expand.css";
+
+.article{
+    position: relative;
+    width: 100%;
+    text-align: left;
+    padding: 2%;
+    margin-bottom: 2%;
+    border: 1px solid #C8C8C8;
+    border-radius: 7px 7px 7px 7px;
+}
+
+.article h3{
+    color:#A9A9A9;
+    font-size: 80%;
+    margin-bottom: 2%;
+}
+
+.article .title{
+    width: 30%;
+    font-size: 130%;
+}
+
+.article .description {
+    width: 50%;
+    font-size: 90%;
+    color: #A9A9A9;
+    margin-top: 3%;
+}
+
+.article .date{
+    margin-top: 3%;
+    color: #A9A9A9;
+}
+
+.article img{
+    width: 30%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 2%;
+    border-radius: 7px 7px 7px 7px;
+}
