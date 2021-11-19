@@ -1,0 +1,17 @@
+@keyframes to-black {
+    from{
+        background-color: var(--bg-color-white);
+    }
+    to {
+        background-color: var(--bg-color-black);
+    }
+}
+
+@keyframes to-white {
+    from{
+        background-color: var(--bg-color-black);
+    }
+    to {
+        background-color: var(--bg-color-white);
+    }
+}

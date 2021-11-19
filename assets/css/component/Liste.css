@@ -2,4 +2,19 @@
 
 #main-list{
     width: 50%;
+    height: 100%;
+}
+
+.theme{
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    font-size: 200%;
+    z-index: 20;
+    color: var(--bg-color-theme);
+    filter: invert(100%);
+}
+
+.theme:hover{
+    cursor: pointer;
 }

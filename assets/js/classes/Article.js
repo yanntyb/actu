@@ -6,14 +6,18 @@ class Article{
     constructor(data,parent){
         this.data = data;
         this.parent = parent;
+        this.description = "";
+        this.title = "";
         this.div = document.createElement("div");
         this.expand = false;
         this.createDom();
 
     }
 
+    /**
+     * Create element in DOM
+     */
     createDom(){
-        console.log(this.data);
         this.parent.appendChild(this.div);
         this.div.className = "article";
         if(!this.data.author){
@@ -27,10 +31,13 @@ class Article{
         this.div.innerHTML =
             `
             <div class="sub-title"><h3>${this.data.author}</h3></div>
-            <div class="title">${this.data.title}</div>
-            <div class="description">${this.data.description}</div>
+            <div class="title">${this.title}</div>
+            <div class="description">${this.description}</div>
             <div class="date">${this.data.published_at}</div>
             `
+        /**
+         * Add an image to the element div if theire is an image to be added
+         */
         if(this.data.image){
             if(isImageUrl(this.data.image)){
                 if(!this.data.image.includes("www.bladi.net")){
@@ -43,38 +50,47 @@ class Article{
 
     }
 
+    /**
+     * Set event listener on the element div to expand it or reverse expand it
+     */
     setEventExpand(){
-        this.expand = false;
-
         document.addEventListener("click", (e) => {
             let targetElement = e.target;
-            do {
-                if (targetElement === (this.div)) {
-                    if(!this.expand){
-                        this.expandDom();
-                    }
-                    this.expand = !this.expand;
-                    return;
+            if (targetElement === this.div || document.body){
+                if(!this.expand && targetElement === this.div){
+                    this.div.style.zIndex = "10";
+                    this.expandDom();
                 }
-                else{
+                else if(targetElement === this.div || document.body){
+                    this.div.style.zIndex = "1";
                     this.retractDom();
                 }
-                targetElement = targetElement.parentNode;
-            } while (targetElement);
-            this.div.style.zIndex = "1";
+            }
         })
     }
 
+    /**
+     * Clen data to match with the "maquette que Jerome nous a fournie"
+     */
     cleanData(){
         if(this.data.title.length > 65){
-            this.data.title = this.data.title.substr(0,58) + "...";
+            this.title = this.data.title.substr(0,58) + "...";
+        }
+        else{
+            this.title = this.data.title;
         }
         if(this.data.description.length > 100){
-            this.data.description = this.data.description.substr(0,100) + "...";
+            this.description = this.data.description.substr(0,100) + "...";
+        }
+        else{
+            this.description = this.data.description;
         }
 
     }
 
+    /**
+     * Clean date to match with the "maquette que Jerome nous a fournie"
+     */
     cleanDate(){
         const translate = {
             "months": "mois",
@@ -103,36 +119,59 @@ class Article{
         this.data.published_at = "Il ya " + result.value + " " + translate[result.suffix];
     }
 
+    /**
+     * Modify element's div to be retracted
+     */
     retractDom() {
-        this.div.classList.add("article");
-        this.div.classList.remove("expand");
-        this.div.style.zIndex = "1";
-        this.div.innerHTML =
-            `
-            <div class="sub-title"><h3>${this.data.author}</h3></div>
-            <div class="title">${this.data.title}</div>
-            <div class="description">${this.data.description}</div>
-            <div class="date">${this.data.published_at}</div>
-            `;
-        if(this.data.image){
-            if(isImageUrl(this.data.image)){
-                if(!this.data.image.includes("www.bladi.net")){
-                    this.div.innerHTML += `<img src="${this.data.image}" alt="${this.data.title}-image">`;
-                }
+    this.div.className.includes("expand")
+    this.div.classList.add("article");
+    this.div.classList.remove("expand");
+    this.div.style.zIndex = "1";
+    this.div.innerHTML =
+        `
+    <div class="sub-title"><h3>${this.data.author}</h3></div>
+    <div class="title">${this.title}</div>
+    <div class="description">${this.description}</div>
+    <div class="date">${this.data.published_at}</div>
+    `;
+    if(this.data.image){
+        if(isImageUrl(this.data.image)){
+            if(!this.data.image.includes("www.bladi.net")){
+                this.div.innerHTML += `<img src="${this.data.image}" alt="${this.data.title}-image">`;
             }
         }
-
-        this.setEventExpand();
     }
 
+    this.expand = false;
+
+    }
+
+    /**
+     * Modify element's div to be expanded
+     */
     expandDom() {
         this.div.style.zIndex = "10";
         this.div.classList.remove("article");
         this.div.classList.add("expand");
         this.div.innerHTML =
             `
-            <div></div>
+            <div id="expanded-article">
+                <h1>${this.data.title}</h1>
+                <div id="content">
+                    <div id="desc">${this.data.description}</div>
+                </div>
+                <div id="author">Publié par ${this.data.author} ${this.data.published_at}</div>
+            </div>
             `
+        if(this.data.image){
+            if(isImageUrl(this.data.image)){
+                if(!this.data.image.includes("www.bladi.net")){
+                    this.div.querySelector("#content").innerHTML += `<img src="${this.data.image}" alt="${this.data.title}-image">`;
+                    this.div.querySelector("#content").className = "with-img";
+                }
+            }
+        }
+        this.expand = true;
     }
 }
 
