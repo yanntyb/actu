@@ -36,7 +36,7 @@ class Liste{
                 /**
                  * Change css theme variable
                  */
-                document.querySelector(":root").style.setProperty("--bg-color-theme","--bg-color-black");
+                document.querySelector(":root").style.setProperty("--bg-color-theme","var(--bg-color-black)");
                 document.body.style.animationName = "to-black";
                 document.body.style.animationDuration = "2s";
                 theme.className = "far fa-moon theme";
@@ -52,7 +52,7 @@ class Liste{
              * Change to white mode
              */
             else{
-                document.querySelector(":root").style.setProperty("--bg-color-theme","--bg-color-white");
+                document.querySelector(":root").style.setProperty("--bg-color-theme","var(--bg-color-white)");
                 document.body.style.animationName = "to-white";
                 document.body.style.animationDuration = "2s";
                 theme.dataset.value = "0";
