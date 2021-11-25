@@ -11,10 +11,8 @@ const matchers = {
                 else{
                     let diviseur = null;
                     for(let i = 2; i <= actual - 1 ; i++){
-                        console.log(`${actual} % ${i} = ${actual%i}`);
                         if(actual % i === 0){
                             diviseur = i;
-                            console.log(`${actual} est divisible par ${i}`);
                         }
                     }
                     if(diviseur === null){
