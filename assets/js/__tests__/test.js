@@ -33,7 +33,7 @@ describe("test", function(){
         jasmine.addMatchers(matchers);
     })
 
-    it("le nombre est un nombre premier", function(){
+    it("le nombre n'est pas un nombre premier", function(){
         for(let index = 0; index < 30; index++){
             expect(index).toNotBePrime();
         }
