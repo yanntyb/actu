@@ -1,0 +1,21 @@
+{
+  "srcDir": "assets/js",
+  "srcFiles": [
+    "**/*.?(m)js"
+  ],
+  "specDir": "assets",
+  "specFiles": [
+    "**/__tests__/**/*[sS]pec.?(m)js"
+  ],
+  "helpers": [
+    "**/__tests__/helpers/**/*.?(m)js"
+  ],
+  "env": {
+    "stopSpecOnExpectationFailure": false,
+    "stopOnSpecFailure": false,
+    "random": true
+  },
+  "browser": {
+    "name": "chrome"
+  }
+}
