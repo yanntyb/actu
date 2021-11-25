@@ -9,7 +9,8 @@
     "build:dev": "webpack --mode=development",
     "watch:prod": "webpack --watch --mode=production",
     "watch:dev": "webpack --watch --mode=development",
-    "start:server": "webpack serve --mode development"
+    "start:server": "webpack serve --mode development",
+    "start:test": "jasmine-browser-runner serve --config=assets/js/__tests__/support/jasmine-browser.json"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,9 @@
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.1.4",
+    "jasmine": "^3.10.0",
+    "jasmine-browser-runner": "^0.9.0",
+    "jasmine-core": "^3.10.1",
     "mini-css-extract-plugin": "^2.4.5",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.2.5",
